@@ -1,4 +1,3 @@
----
 yurtle: v1.1
 id: nautical/crew
 type: crew
@@ -18,6 +17,14 @@ relates-to:
   - nautical/voyage
 nugget: Twenty souls bound by salt and stars
 size: 20
----
+members:
+  - architects/louis-bourgeois
+  - architects/charles-mason-remey
+  - architects/fariborz-sahba
+  - architects/teuto-rocholl
+  - architects/peter-tillotson
+  - architects/hossein-amanat
+  - architects/siamak-hariri
+  - architects/studio-gionata-rizzi
 
 From captain to cabin boy, every hand knows the song of the rigging.

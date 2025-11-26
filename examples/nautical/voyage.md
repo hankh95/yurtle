@@ -1,4 +1,3 @@
----
 yurtle: v1.1
 id: nautical/voyage
 type: voyage
@@ -21,7 +20,17 @@ relates-to:
   - nautical/crew
 nugget: A three-month voyage to chart the uncharted archipelago
 created: 2025-12-01
----
+crew:
+  - nautical/crew
+relates-to:
+  - architects/louis-bourgeois
+  - architects/charles-mason-remey
+  - architects/fariborz-sahba
+  - architects/teuto-rocholl
+  - architects/peter-tillotson
+  - architects/hossein-amanat
+  - architects/siamak-hariri
+  - architects/studio-gionata-rizzi
 
 The great voyage begins at dawn.  
 All hands gather on deck as the sails catch the first wind.
