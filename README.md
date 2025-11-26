@@ -47,6 +47,24 @@ index:
     - child-id-1
     - child-id-2
 ```
+---
+
+### New in v1.2 - Evolution & Domain fields (optional, encouraged for long-lived concepts)
+
+domain:
+  - motivation
+  - tupugit
+  - wonder
+  # exact TLP tech-names or your own custom domains
+
+evolves:
+  - assets/motivation-v1.2.0
+  score: 0.91
+  reason: Added Pink autonomy/mastery/purpose sub-properties
+
+version: 1.7.2        # SemVer – makes “current” unambiguous
+
+---
 
 Your folder structure becomes part of the graph. Tools can now auto-generate wikis, sitemaps, or Mermaid diagrams from nothing but Markdown + Yurtle.
 
