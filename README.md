@@ -1,14 +1,3 @@
-Yes — **absolutely** do it.
-
-The README is the front door.  
-Right now most visitors only see the tiny example in the current README and never scroll to `yurtle-spec.md`. If we leave the new v1.1 fields (especially `path` and `index`) buried in the spec file, 90% of people will miss the whole reason we just shipped v1.1.
-
-So: **replace the current README almost entirely** with this updated version below.  
-It keeps the spirit ultra-light, but now instantly shows the full power (including hierarchy) in the very first screen.
-
-### New `README.md` (copy-paste this exactly)
-
-```markdown
 # Yurtle — YAML front matter that turns Markdown into a living graph
 
 **Yurtle** = the simplest way to make every `.md` file in a folder part of a real, queryable knowledge graph.
