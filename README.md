@@ -68,7 +68,18 @@ version: 1.7.2        # SemVer – makes “current” unambiguous
 
 Your folder structure becomes part of the graph. Tools can now auto-generate wikis, sitemaps, or Mermaid diagrams from nothing but Markdown + Yurtle.
 
-**See the full nautical demo** → `examples/nautical/`  
-A tiny, complete, beautiful graph that feels alive (four files, fully connected).
+**See the canonical demo** → [`examples/nautical-project/index.md`](examples/nautical-project/index.md)
+A fully-populated, living knowledge graph — one voyage, one ship, several crew, a manifest, a logbook, and a clickable index. All relationships and hierarchy work out of the box. Fork it and adapt for your own project, campaign, or knowledge base.
+
+```mermaid
+graph TD
+  V[voyage.md<br/>Voyage to the Sapphire Isles] --> S[ship.md]
+  V --> C[crew.md]
+  V --> M[manifest.md]
+  V --> L[logbook-2025-12.md]
+  S --> C
+  C --> CR[crew-captain-reed.md]
+  C --> NL[crew-navigator-lee.md]
+```
 
 MIT licensed · Fork, extend, build your own fleet.
