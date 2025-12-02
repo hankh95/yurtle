@@ -83,3 +83,17 @@ graph TD
 ```
 
 MIT licensed · Fork, extend, build your own fleet.
+
+## Add Documentation Section
+
+Add a documentation section to the README explaining how to use the yurtle knowledge graph.
+
+### Acceptance Criteria
+- [x] README has a new section
+- [x] Section explains yurtle usage
+- [x] Contains at least 3 lines
+
+---
+*Completed by santiago-dev aboard ss-voyage*
+*Task: TASK-001*
+*Timestamp: 2025-12-02T04:29:40.136747*
