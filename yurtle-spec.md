@@ -1,215 +1,166 @@
-# Yurtle Specification v1.2 (December 2025)
+# Yurtle Specification v1.3 (December 2025)
 
-Yurtle is minimal YAML front matter that turns any folder of Markdown files into a queryable knowledge graph.
+Yurtle is minimal YAML front matter + inline blocks that turn any folder of Markdown files into a queryable knowledge graph.
 
-## The Three-Layer Semantic Model
+## The Three-Layer Model
 
-Every Yurtle page can express relationships through three layers:
-
-| Layer | Location | Purpose |
-|-------|----------|---------|
-| **Frontmatter** | YAML header at top | Explicit metadata |
-| **Content** | Markdown body | Prose + wiki links |
-| **Infoboxes** | Anywhere in content | Structured data blocks |
-
-This enables **"graph anywhere"** — relationships declared where they make sense.
+| Layer | Location | Syntax | Purpose |
+|-------|----------|--------|---------|
+| **Frontmatter** | Top of file | `---` YAML `---` | Document metadata |
+| **Content** | Body | Markdown + `[[links]]` | Human prose |
+| **Yurtle Blocks** | Anywhere | ` ```yurtle ``` ` | Inline structured data |
 
 ---
 
 ## Layer 1: Frontmatter
 
-### Required Fields
+### Required
 
 ```yaml
 ---
-yurtle: v1.2
-id: unique/uri/like/this
+yurtle: v1.3
+id: unique/path/id
 ---
 ```
 
-### Core Fields (recommended)
+### Recommended
 
 ```yaml
 ---
-yurtle: v1.2
-id: unique/uri/like/this          # required - globally unique
-type: note | person | project | asset | log | ...
+yurtle: v1.3
+id: unique/path/id
+type: note | person | project | asset | log
 title: Human Readable Name
 status: draft | active | complete | archived
-topics: [list, of, tags]
+topics: [tag1, tag2]
 relates-to: [other/id, another/id]
-nugget: One-sentence essence for search results
+nugget: One-sentence summary
 created: 2025-12-01
 ---
 ```
 
-### Hierarchy & Discovery
+### Hierarchy
 
 ```yaml
-path: folder/location             # physical location hint
+path: folder/location
 index:
-  discoverable: true|false        # include in auto-indexes (default: true)
-  parent: id-or-path              # container node
-  children:                       # contained nodes
-    - child-id-1
-    - child-id-2
+  discoverable: true
+  parent: parent-id
+  children: [child-1, child-2]
 ```
 
-### Evolution & Domain
+### Evolution
 
 ```yaml
-domain:                           # conceptual domains
-  - motivation
-  - sustainability
-  - your-custom-domain
-
-evolves:                          # version tracking
-  - previous-id                   # what this replaces
-  score: 0.84                     # confidence (0-1)
-  reason: Why this is better
-
-version: 1.3.0                    # SemVer for versioned assets
+domain: [nautical, logistics]
+evolves:
+  - previous-id
+  score: 0.91
+  reason: Why this version is better
+version: 1.3.0
 ```
 
 ---
 
 ## Layer 2: Content Body
 
-The main Markdown content. Relationships can be expressed through:
-
-### Wiki Links
+Standard markdown with optional wiki links:
 
 ```markdown
-See [[nautical/voyage]] for the full journey.
-The captain is [[nautical/crew-captain-reed]].
+The [[ship|Windchaser]] departed at dawn.
+See [[crew-captain-reed]] for command structure.
 ```
 
-### Natural Language (LLM-parseable)
-
-```markdown
-The Windchaser **depends on** a full crew complement.
-This voyage **builds upon** the 1851 expedition.
-The manifest **is required by** the harbor master.
-```
-
-LLMs can extract typed relationships from prose:
-- `depends_on: crew`
-- `builds_upon: 1851-expedition`
-- `required_by: harbor-master`
+Relationships can be implicit in prose:
+- "X **depends on** Y" → `depends-on: Y`
+- "X **part of** Y" → `part-of: Y`
 
 ---
 
-## Layer 3: Infoboxes
+## Layer 3: Yurtle Blocks
 
-Structured data blocks that can appear **anywhere** in content.
+Inline structured data using code fence syntax:
 
-### Syntax
+~~~markdown
+```yurtle
+ship:
+  title: Windchaser
+  built: 1852
+  part-of: voyage
+  crewed-by: crew
+```
+~~~
 
-```markdown
-<!-- infobox:type-name -->
-| Property | Value |
-|----------|-------|
-| Key1 | Value1 |
-| Key2 | Value2 |
-<!-- /infobox -->
+### Syntax Rules
+
+1. **Same as frontmatter** — `key: value` pairs
+2. **Indentation** — 2 spaces for properties
+3. **Subject** — Top-level key with colon (e.g., `ship:`)
+4. **Values** — Strings, numbers, or IDs (no quotes needed)
+
+### Multiple Subjects
+
+```yurtle
+captain:
+  name: Elias Reed
+  commands: ship
+
+navigator:
+  name: Mei-Xing Lee
+  reports-to: captain
 ```
 
-### Common Types
+### Optional Base
 
-**Asset/Thing:**
-```markdown
-<!-- infobox:ship -->
-| Property | Value |
-|----------|-------|
-| Name | Windchaser |
-| Type | Clipper |
-| Built | 1852 |
-| Length | 62m |
-<!-- /infobox -->
+```yurtle
+@base nautical-project/
+
+ship:
+  part-of: voyage
 ```
 
-**Person:**
-```markdown
-<!-- infobox:person -->
-| Property | Value |
-|----------|-------|
-| Name | Captain Elias Reed |
-| Role | Master & Commander |
-| Born | 1809 |
-<!-- /infobox -->
+All IDs resolve relative to `nautical-project/`.
+
+### Lists
+
+```yurtle
+crew:
+  members:
+    - captain-reed
+    - navigator-lee
+    - bosun-chen
+  size: 20
 ```
-
-**Relationships:**
-```markdown
-<!-- infobox:relationships -->
-| Relationship | Target | Notes |
-|--------------|--------|-------|
-| requires | crew.md | Minimum 20 |
-| uses | manifest.md | Cargo tracking |
-| part-of | voyage.md | Current expedition |
-<!-- /infobox -->
-```
-
-**Status:**
-```markdown
-<!-- infobox:status -->
-| Metric | Value |
-|--------|-------|
-| Progress | 60% |
-| Days Remaining | 34 |
-| Crew Health | Excellent |
-<!-- /infobox -->
-```
-
-### Infobox Best Practices
-
-1. Use semantic type names: `ship`, `person`, `relationships`, `status`
-2. Keep tables focused — one concern per infobox
-3. Place infoboxes near the content they describe
-4. Use consistent column names across similar types
 
 ---
 
 ## Design Principles
 
 ### Files Are the Interface
-
-- State lives in files, not databases
-- Git tracks all changes automatically
-- LLMs read files directly — no query language needed
+- No database required
+- Git tracks everything
+- LLMs read markdown directly
 
 ### Graph Anywhere
+- Frontmatter for document metadata
+- Wiki links for inline references
+- Yurtle blocks for structured data mid-document
 
-Unlike databases where relationships are stored separately, Yurtle lets you declare relationships where they make sense:
-
-- **Document-level** → Frontmatter
-- **In prose** → Wiki links and natural language
-- **Structured mid-page** → Infoboxes
-
-### LLM-Native
-
-```
-User: What ships are in the fleet?
-
-LLM: *reads voyage.md frontmatter*
-     *finds relates-to: [ship.md]*
-     *reads ship.md, finds infobox:ship*
-     
-     The Windchaser, a 62m clipper built in 1852.
-```
-
-No query language. Just markdown.
+### Consistent Syntax
+- Frontmatter and blocks use identical `key: value` format
+- Learn once, use everywhere
 
 ---
 
 ## Version History
 
-| Version | Date | Key Changes |
-|---------|------|-------------|
-| v1.2 | Dec 2025 | Three-layer model, infoboxes, graph-anywhere |
-| v1.1 | Dec 2025 | Hierarchy (index, parent, children) |
-| v1.0 | Nov 2025 | Core frontmatter (id, type, relates-to) |
+| Version | Changes |
+|---------|---------|
+| **v1.3** | Yurtle blocks with ` ```yurtle ``` ` code fence |
+| v1.2 | Three-layer model concept |
+| v1.1 | Hierarchy (index, parent, children) |
+| v1.0 | Core frontmatter |
 
 ---
 
-MIT licensed · See [README.md](README.md) for examples.
+MIT licensed · See [README.md](README.md)
