@@ -28,7 +28,36 @@ captain: nautical-project/crew-captain-reed
 Built in Aberdeen, copper-sheathed, Baltimore clipper lines.  
 She has outrun typhoons and carried tea from Canton in 79 days.
 
-**Current condition**  
-- Hull: excellent  
-- Sails: new fore-topsail after Day 38 squall  
-- Water: 9,400 gallons remaining (78 days at current ration)
+<!-- infobox:ship -->
+| Property | Value |
+|----------|-------|
+| Name | Windchaser |
+| Type | Three-masted clipper |
+| Built | 1852, Aberdeen |
+| Length | 62m |
+| Hull | Copper-sheathed |
+| Captain | [[nautical-project/crew-captain-reed]] |
+| Crew | 20 souls |
+<!-- /infobox -->
+
+## Current Condition
+
+<!-- infobox:status -->
+| Component | Status | Notes |
+|-----------|--------|-------|
+| Hull | Excellent | Copper sheathing intact |
+| Sails | Good | New fore-topsail after Day 38 |
+| Rigging | Excellent | Inspected Day 40 |
+| Water | 78 days | 9,400 gallons remaining |
+<!-- /infobox -->
+
+## Relationships
+
+<!-- infobox:relationships -->
+| Relationship | Target | Notes |
+|--------------|--------|-------|
+| part-of | [[nautical-project/voyage]] | Current expedition |
+| crewed-by | [[nautical-project/crew]] | 20 souls |
+| commanded-by | [[nautical-project/crew-captain-reed]] | Master |
+| carries | [[nautical-project/manifest]] | Cargo & provisions |
+<!-- /infobox -->
