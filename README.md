@@ -216,6 +216,48 @@ graph TD
 
 ---
 
+## Implementations
+
+### Python: yurtle-rdflib
+
+**[yurtle-rdflib](https://github.com/hankh95/yurtle-rdflib)** — RDFlib plugin for reading and writing Yurtle files.
+
+```bash
+pip install yurtle-rdflib
+```
+
+```python
+from rdflib import Graph
+import yurtle_rdflib
+
+# Parse Yurtle files
+graph = Graph()
+graph.parse("voyage.md", format="yurtle")
+
+# Load entire workspace
+graph = yurtle_rdflib.load_workspace("nautical-project/")
+
+# Query with SPARQL
+results = graph.query("""
+    SELECT ?ship ?title WHERE {
+        ?ship a yurtle:Ship ;
+              yurtle:title ?title .
+    }
+""")
+
+# Live bidirectional sync
+graph = yurtle_rdflib.create_live_graph("workspace/", auto_flush=True)
+graph.add((subject, predicate, object))  # Persists immediately
+```
+
+**Features:**
+- Parser: `graph.parse(format="yurtle")` for Turtle/YAML frontmatter
+- Serializer: `graph.serialize(format="yurtle")` with markdown preservation
+- Store: Bidirectional sync between graph and filesystem
+- 55+ tests, Python 3.9-3.13 support
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
