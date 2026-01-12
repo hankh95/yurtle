@@ -198,7 +198,9 @@ No query language. Just markdown.
 
 ---
 
-## Demo: The Windchaser Project
+## Examples
+
+### The Windchaser Project (Nautical)
 
 **See →** [`examples/nautical-project/`](examples/nautical-project/)
 
@@ -212,6 +214,48 @@ graph TD
   V --> L[logbook.md]
   C --> CR[captain-reed.md]
   C --> NL[navigator-lee.md]
+```
+
+**Demonstrates:** YAML frontmatter, parent/children hierarchy, yurtle blocks
+
+---
+
+### Laboratory Tests (Medical/Scientific)
+
+**See →** [`examples/lab-tests/`](examples/lab-tests/)
+
+Medical laboratory tests with LOINC codes, reference ranges, and clinical interpretations.
+
+| File | Description | LOINC Code |
+|------|-------------|------------|
+| `complete-blood-count.md` | CBC panel with 12 components | 58410-2 |
+| `hemoglobin-a1c.md` | Diabetes monitoring marker | 4548-4 |
+| `lipid-panel.md` | Cholesterol and triglycerides | 57698-3 |
+| `basic-metabolic-panel.md` | BMP with electrolytes | 51990-0 |
+
+**Demonstrates:** Turtle frontmatter with full RDF, medical vocabularies (LOINC, SNOMED), yurtle blocks for test components
+
+```markdown
+---
+@prefix lab: <https://yurtle.dev/lab/> .
+@prefix loinc: <https://loinc.org/> .
+
+<urn:lab:hemoglobin-a1c> a lab:LaboratoryTest ;
+    lab:loincCode "4548-4" ;
+    lab:referenceRangeNormal "< 5.7%" ;
+    med:clinicalUse "Diabetes monitoring" .
+---
+
+# Hemoglobin A1c (HbA1c)
+
+The HbA1c test reflects average blood glucose over 2-3 months...
+
+` ` `yurtle
+interpretation:
+  normal: "< 5.7%"
+  prediabetes: "5.7% - 6.4%"
+  diabetes: ">= 6.5%"
+` ` `
 ```
 
 ---
