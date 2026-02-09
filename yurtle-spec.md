@@ -1,6 +1,8 @@
-# Yurtle Specification v1.3 (December 2025)
+# Yurtle Specification v2.0 (February 2026)
 
-Yurtle is minimal YAML front matter + inline blocks that turn any folder of Markdown files into a queryable knowledge graph.
+Yurtle is minimal YAML/RDF front matter + inline blocks that turn any folder of Markdown files into a queryable knowledge graph.
+
+**New in v2.0:** Y-layer specification for AI beings — see [y-layers-spec.md](y-layers-spec.md)
 
 ## The Three-Layer Model
 
@@ -18,7 +20,7 @@ Yurtle is minimal YAML front matter + inline blocks that turn any folder of Mark
 
 ```yaml
 ---
-yurtle: v1.3
+yurtle: v2.0
 id: unique/path/id
 ---
 ```
@@ -27,7 +29,7 @@ id: unique/path/id
 
 ```yaml
 ---
-yurtle: v1.3
+yurtle: v2.0
 id: unique/path/id
 type: note | person | project | asset | log
 title: Human Readable Name
@@ -35,7 +37,7 @@ status: draft | active | complete | archived
 topics: [tag1, tag2]
 relates-to: [other/id, another/id]
 nugget: One-sentence summary
-created: 2025-12-01
+created: 2026-02-09
 ---
 ```
 
@@ -156,7 +158,8 @@ crew:
 
 | Version | Changes |
 |---------|---------|
-| **v1.3** | Yurtle blocks with ` ```yurtle ``` ` code fence |
+| **v2.0** | Y-layer specification (7 layers: Y0-Y6) for AI beings |
+| v1.3 | Yurtle blocks with ` ```yurtle ``` ` code fence |
 | v1.2 | Three-layer model concept |
 | v1.1 | Hierarchy (index, parent, children) |
 | v1.0 | Core frontmatter |

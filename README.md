@@ -1,13 +1,12 @@
-# Yurtle — YAML front matter that turns Markdown into a living graph
+# Yurtle — Markdown that becomes a knowledge graph
 
 **Yurtle** = the simplest way to make every `.md` file in a folder part of a real, queryable knowledge graph.
 
-Just add a normal YAML block at the top of any Markdown file.  
-That's it.
+Just add a YAML or RDF/Turtle block at the top of any Markdown file. That's it.
 
 ```yaml
 ---
-yurtle: v1.3
+yurtle: v2.0
 id: nautical/voyage
 type: voyage
 title: The Crossing of the Western Sea
@@ -18,7 +17,23 @@ nugget: A three-month voyage to chart the uncharted archipelago
 ---
 ```
 
-No plugins. No database. Works with Obsidian, Logseq, plain Git, or any future AI memory system.
+No plugins. No database. Works with Obsidian, Logseq, plain Git, or any AI memory system.
+
+## What's New in v2.0
+
+**Y-Layer Specification** — A 7-layer model for AI beings to organize knowledge:
+
+| Layer | Purpose | Example |
+|-------|---------|---------|
+| Y0 | Raw prose | Source documents |
+| Y1 | Semantic entities | Wikipedia-like pages |
+| Y2 | Reasoning rules | Ontology, inference |
+| Y3 | Experience | Conversations, actions |
+| Y4 | Journal | Opinions, reflections |
+| Y5 | Procedural | Workflows, skills |
+| Y6 | Metacognitive | Self-awareness |
+
+**See:** [y-layers-spec.md](y-layers-spec.md) for the full specification.
 
 ---
 
@@ -306,7 +321,8 @@ graph.add((subject, predicate, object))  # Persists immediately
 
 | Version | Date | Changes |
 |---------|------|---------|
-| **v1.3** | Dec 2025 | Yurtle blocks with code fence syntax |
+| **v2.0** | Feb 2026 | Y-layer specification (7 layers: Y0-Y6) for AI beings |
+| v1.3 | Dec 2025 | Yurtle blocks with code fence syntax |
 | v1.2 | Dec 2025 | Three-layer model, infoboxes |
 | v1.1 | Dec 2025 | Hierarchy (index, parent, children) |
 | v1.0 | Nov 2025 | Initial release |
