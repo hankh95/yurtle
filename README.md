@@ -1,5 +1,9 @@
 # Yurtle — Markdown that becomes a knowledge graph
 
+> **Status (2026-06):** the spec is current (v2.0, Y0–Y6 layer model) and papers 101/117
+> cite this repo. In the NuSy runtime, knowledge storage moved to Arrow tables in V14 —
+> the Y-layer model defined here carries forward unchanged into the V19 Arrow Memory.
+
 **Yurtle** = the simplest way to make every `.md` file in a folder part of a real, queryable knowledge graph.
 
 Just add a YAML or RDF/Turtle block at the top of any Markdown file. That's it.
