@@ -1,6 +1,6 @@
 # Yurtle — Markdown that becomes a knowledge graph
 
-> **Status (2026-06):** the spec is current (v2.0, Y0–Y6 layer model) and papers 101/117
+> **Status (2026-06):** the spec is current (v2.1: yurtle-table tabular RDF; Y0–Y6 layer model) and papers 101/117
 > cite this repo. In the NuSy runtime, knowledge storage moved to Arrow tables in V14 —
 > the Y-layer model defined here carries forward unchanged into the V19 Arrow Memory.
 
@@ -50,6 +50,7 @@ Yurtle pages express relationships through three complementary layers:
 | **Frontmatter** | Top of file | `---` YAML `---` | Document metadata |
 | **Content** | Body | Markdown + `[[links]]` | Human prose |
 | **Yurtle Blocks** | Anywhere | ` ```yurtle ``` ` | Inline structured data |
+| **Tabular Blocks** | Anywhere | ` ```yurtle-table ``` ` | Same-shaped subjects as a scannable, queryable table (v2.1) |
 
 This is the **"graph anywhere"** principle — relationships declared where they make sense.
 
